@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://zhangzhibang0309.github.io').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="前言">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo-next主题博客搭建中踩过的坑">
+<meta property="og:url" content="https://zhangzhibang0309.github.io/2020/01/27/hexo-next%E4%B8%BB%E9%A2%98%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E4%B8%AD%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/index.html">
+<meta property="og:site_name" content="私のブログ">
+<meta property="og:description" content="前言">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhangzhibang0309.github.io/images/%E6%A1%A5%E6%9C%AC%E7%8E%AF%E5%A5%88.jpg">
+<meta property="og:image" content="https://zhangzhibang0309.github.io/images/%E6%9D%A5%E5%BF%85%E5%8A%9B.jpg">
+<meta property="article:published_time" content="2020-01-27T08:04:59.000Z">
+<meta property="article:modified_time" content="2020-02-02T14:00:59.362Z">
+<meta property="article:author" content="西厢">
+<meta property="article:tag" content="blog">
+<meta property="article:tag" content="hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhangzhibang0309.github.io/images/%E6%A1%A5%E6%9C%AC%E7%8E%AF%E5%A5%88.jpg">
+
+<link rel="canonical" href="https://zhangzhibang0309.github.io/2020/01/27/hexo-next%E4%B8%BB%E9%A2%98%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E4%B8%AD%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>hexo-next主题博客搭建中踩过的坑 | 私のブログ</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">私のブログ</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">18</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">5</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">12</span></a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>日程表</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://zhangzhibang0309.github.io/2020/01/27/hexo-next%E4%B8%BB%E9%A2%98%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E4%B8%AD%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="西厢">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="私のブログ">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          hexo-next主题博客搭建中踩过的坑
+        </h1>
+
+        <div class="post-meta">
+        
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-27 16:04:59" itemprop="dateCreated datePublished" datetime="2020-01-27T16:04:59+08:00">2020-01-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-02 22:00:59" itemprop="dateModified" datetime="2020-02-02T22:00:59+08:00">2020-02-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%99%E7%A8%8B/" itemprop="url" rel="index">
+                    <span itemprop="name">教程</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><a id="more"></a>
+<hr>
+<h2 id="图是灵魂"><a href="#图是灵魂" class="headerlink" title="图是灵魂"></a>图是灵魂</h2><p><img src="/images/%E6%A1%A5%E6%9C%AC%E7%8E%AF%E5%A5%88.jpg" alt="桥本环奈"></p>
+<hr>
+<h2 id="不知道说什么也要说"><a href="#不知道说什么也要说" class="headerlink" title="不知道说什么也要说"></a>不知道说什么也要说</h2><p>　　从开始搭建博客到对主题进行各种配置，遇到了各种各样的问题，由于版本不一样导致网上的教程并不适用，期间踩过各种坑，这里我就把我搭建博客中用到的小技巧以及各种问你题我是怎么解决的总结一下。</p>
+<h1 id="hexo建站–本文部署到Github"><a href="#hexo建站–本文部署到Github" class="headerlink" title="hexo建站–本文部署到Github"></a>hexo建站–本文部署到Github</h1><hr>
+<h2 id="下载内容"><a href="#下载内容" class="headerlink" title="下载内容"></a>下载内容</h2><p>我们要安装的内容还是不少的<br>1.<a href="http://nodejs.cn/" target="_blank" rel="noopener">node.js</a>,在他的英文官网下载是很慢的，几乎下不下来，这个是它的中文网，下载速度很快。下载对应官网LTS版。<br>2.<a href="https://git-scm.com/" target="_blank" rel="noopener">Git</a>,点击此处下载Git。<br>3.<a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener">Hexo</a>,在官网下载Hexo。<br>4.<a href="https://www.dcloud.io/" target="_blank" rel="noopener">HBuilder</a>,这是我比较喜欢用的代码编辑器，大家可以用这个，为以后主题配置系列操作准备。<br>这里具体建站以及部署到本地我就不细说了，我是跟着小破站上的视频照着做的，期间没遇到什么问题。</p>
+<hr>
+<h2 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h2><p>大家可根据小破站视频操作到部署到本地，这时候我们的hexo已经基本搭建起来，但这只是完成了一小部分，后面的主题配置，别人不知道，我可是要抓狂了。那么，首先我们要申请github账号，建立自己的仓库，还要配置githubssh，一顿操作后，部署的准备工作基本做完了。接下来就是踩坑了。<br>1.网站404<br>在_config.yml中<br>deploy:<br>  type: git<br>  repo: <a href="https://github.com/账号名称/仓库名称.github.io.git" target="_blank" rel="noopener">https://github.com/账号名称/仓库名称.github.io.git</a><br>  branch: master</p>
+<p>以及上面的url: https://仓库名.github.io<br>配置完这些，我满怀期待的打开url后面的网址，结果404将我绝杀。然后开始查各种资料，后来终于找到了问题，在github上存放博客文件的仓库名称必须与账号同名。这样就可以解决了。</p>
+<p>2.推送到github失败<br>这张图相信像我这样的新手小白应该不会陌生了，<br>推送的流程是<br>hexo clean<br>hexo d -g<br>然后就出现了这个可恨的Spawn failed，当然最好推送的时候不要使用cmd，用git bash容易一些，不过，还是会出错，最近不知道是家里网的原因还是怎么，github一直进不去，查看密钥也提示time out，与提交现实的错误相同，这个错误折磨了我好长一段时间，也从网上查了各种各样的原因，像我这样的萌新肯定也听说过网上的各种解决方案，什么修改端口，还有更改代理什么的，以及更改deploy的配置，还有一个说是密钥出问题了，这些除了设置代理我都试过了，然并卵，最后我在看与github为什么进不去的一个帖子时候，无意间看到了有人用4G可以进去，我就没有报多大的希望，就用手机开了热点，试了一下，神了！再也没出现过问题。<br>Ps:如果是会文明上网的大佬应该不会存在此问题。</p>
+<h1 id="Next主题配置相关问题"><a href="#Next主题配置相关问题" class="headerlink" title="Next主题配置相关问题"></a>Next主题配置相关问题</h1><hr>
+<h2 id="温馨提示"><a href="#温馨提示" class="headerlink" title="温馨提示"></a>温馨提示</h2><p>这个Next主题的机制大概是这样的，主题本身就提供了很多功能，在主题配置文件中很多功能后面把false改成true即可开启此功能。</p>
+<hr>
+<h2 id="更换Next主题"><a href="#更换Next主题" class="headerlink" title="更换Next主题"></a>更换Next主题</h2><p>Next是非常出名也是用的最多的一款主题，hexo官网有很多主题，我选择next的原因主要是next教程比较多(原谅我菜)。大家可以去GitHub直接搜索next，点击第一个项目，去下载，然后把next文件放到本地博客根目录的themes里面，然后再配置文件(_config.yml)中theme: 后面更改为next，打开cmd，进入博客根目录，hexo s -p，部署到本地，就可以看到，你的博客已经完全变样子了，类似于换了一个皮肤。<br>然后，在主题配置文件，就是在next文件夹下面的(_config.yml)中有个scheme配置，在next之下还有四种样式可以选择。我个人用的是Pisces。<br>好，到这里，大概你的博客除了丑没什么其他问题了。</p>
+<hr>
+<h2 id="博客基本信息配置"><a href="#博客基本信息配置" class="headerlink" title="博客基本信息配置"></a>博客基本信息配置</h2><p>在配置文件中<br>title: 博客名称<br>subtitle: ‘’<br>description: ‘’<br>keywords:<br>author: 作者<br>language: zh-CN<br>timezone: ‘’<br>以上信息，主要的我都已经标注了，language默认配置是英文，改成zh-CN就可以将博客语言改成中文了。<br>接下来就是要安排头像了，作为个人博客，怎么能没有头像呢。<br>配置方法：在next下的images中放入你想要作为头像的图片，进入主题配置文件，找到如下配置<br>avatar:<br>  url: /images/头像.jpg<br>按照此模板配置好即可，因为我发现hexo的图片链接容易炸，所以就不要自己建文件夹放图片了，按照我说的应该是没问题的，我都已经测试过。这下，头像也就布置好了。</p>
+<hr>
+<h2 id="菜单目录配置"><a href="#菜单目录配置" class="headerlink" title="菜单目录配置"></a>菜单目录配置</h2><p>现在你的博客中只有菜单目录只有两个选项，首页，和归档，添加其他的选项是必须的，在主题配置文件中，找到<br>menu:<br>  home: / || home  主页<br>  about: /about/ || user  关于<br>  tags: /tags/ || tags  标签<br>  categories: /categories/ || th  分类<br>  archives: /archives/ || archive  归档<br>  schedule: /schedule/ || calendar  日程表<br>  #sitemap: /sitemap.xml || sitemap  忘了是啥了<br>  #commonweal: /404/ || heartbeat  404爱心<br>可根据自己的喜好，将注释去掉，就可以开启了，开启之后，在博客根目录下的source建立文件夹，每个文件夹名字对应上面的about，tags，只建立分类，关于，标签就可以了，然后再在文件夹里新建index.md，在里面加入<br>---<br>title: 如下分类<br>date: 2019-06-25 19:16:17<br>type: “categories”<br>---<br>type与文件夹名称对应，时间随便，title就是你点进分类后现实的一句话，只有添加这个之后，点进去分类选项之后，才会显示各个选项，否则你虽然给文章添加了分类，无法通过点击菜单栏中的分类进行查看。然后，在你写博文的时候，要把下面这些添加在文首<br>---<br>title: 文章名称<br>date: 2020-01-27 17:04:59<br>categories: 归为什么分类<br>tags: [标签1,标签2,标签3,标签4]<br>---<br>这样就完成了对于菜单栏的一系列配置。</p>
+<hr>
+<h2 id="添加社交链接"><a href="#添加社交链接" class="headerlink" title="添加社交链接"></a>添加社交链接</h2><p>在主题配置文件中找到social:，后面有一系列社交网站，想添加哪个，去掉注释即可，并把后面的网站改成相应的网站就行了，到这里都是比较愉悦的，大坑还在后面。</p>
+<hr>
+<h2 id="添加字数和阅读时间统计"><a href="#添加字数和阅读时间统计" class="headerlink" title="添加字数和阅读时间统计"></a>添加字数和阅读时间统计</h2><p>先来安装个插件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-symbols-count-time --save</span><br></pre></td></tr></table></figure>
+<p>进入主题配置文件<br>symbols_count_time:<br>  separated_meta: true<br>  item_text_post: true<br>  item_text_total: true<br>  awl: 4<br>  wpm: 275<br>  suffix: mins.</p>
+<p>  post_wordcount:<br>    item_text: true<br>    wordcount: true         # 单篇 字数统计<br>    min2read: true          # 单篇 阅读时长<br>    totalcount: false   # 网站 字数统计<br>    separated_meta: true<br>这两块配置全部改为true，这时候文章上面已经显示了阅读时间，字数，如果后面的数据为NaNa。。。，那就安装个插件，根目录下运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">install eslint --save</span><br></pre></td></tr></table></figure>
+<p>我当时遇到了这个问题，具体忘记怎么解决的了，应该是这个插件就可以解决。如果大家发现不行的话并且找到了解决方法，欢迎在下面评论区进行补充。</p>
+<hr>
+<h2 id="添加访问人数，访问次数"><a href="#添加访问人数，访问次数" class="headerlink" title="添加访问人数，访问次数"></a>添加访问人数，访问次数</h2><p>在主题配置文件中<br>busuanzi_count:<br>  enable: true<br>  total_visitors: true<br>  total_visitors_icon: user<br>  total_views: true<br>  total_views_icon: eye<br>  post_views: true<br>  post_views_icon: eye<br>把enable后面改成true即可在博客底部看到访问人数|访问次数。</p>
+<hr>
+<h2 id="添加live2d看板娘"><a href="#添加live2d看板娘" class="headerlink" title="添加live2d看板娘"></a>添加live2d看板娘</h2><p>首先根目录下安装插件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-helper-live2d</span><br></pre></td></tr></table></figure>
+<p>接下来安装模型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install live2d-widget-model-模型名称</span><br></pre></td></tr></table></figure>
+<p>模型可以从百度上查，以后我可以写个博客把模型展示一下。<br>安装完成之后，在根目录下，有个node_modules,找到live2d-widget-model-模型名称，然后把这个文件夹复制到根目录下的live2d_models中，再去主题配置文件中找到<br>live2d:<br>  enable: true<br>  scriptFrom: local<br>  pluginRootPath: live2dw/<br>  pluginJsPath: lib/<br>  pluginModelPath: assets/<br>  tagMode: false<br>  debug: false<br>  model:<br>    use: live2d-widget-model-黑猫<br>  display:<br>    position: right<br>    hOffset: -40 #水平位置<br>    vOffset: -30 #垂直位置<br>    width: 200<br>    height: 350<br>  mobile:<br>    show: true<br>最上面设置为true，use后面是想改成的模型的名称，也就是刚才复制到live2d_models中的文件加名称。<br>我想说几个自定义小技巧，hoffset，voffset可是调整模型位置，width和height可以调整大小。</p>
+<hr>
+<h2 id="添加评论系统"><a href="#添加评论系统" class="headerlink" title="添加评论系统"></a>添加评论系统</h2><p>需要借助第三方，我用的是来必力，操作的时候比较简单。先在<a href="https://livere.com/" target="_blank" rel="noopener">来必力</a>注册账号，在<a href="https://livere.com/insight/managereply/period" target="_blank" rel="noopener">这个地方</a>，获取uid，下图为uid在哪。<br><img src="/images/%E6%9D%A5%E5%BF%85%E5%8A%9B.jpg" alt><br>在主题配置文件中找到livere_uid，把uid复制过去。这样应该就行了。<br>Ps：这张图是我转载的。</p>
+<hr>
+<h2 id="添加打赏功能"><a href="#添加打赏功能" class="headerlink" title="添加打赏功能"></a>添加打赏功能</h2><p>这是我遇到的比较大的一个坑。<br>好像是由于next版本问题，导致网上的教程再次失效，配置方法<br>在主题配置文件中找到<br>reward_settings:<br>   #If true, reward will be displayed in every article by default.<br>  enable: true<br>  animation: false<br>  comment: 打赏上方的话</p>
+<p>reward:<br>  wechatpay: /images/wechatpay.jpg    //微信二维码<br>  alipay: /images/alipay.jpg          //支付宝二维码<br>   #bitcoin: /images/bitcoin.png<br>这两个配置，都要修改，改成我这样子，图片就放在next下source里的images中，这样就可以成功啦。</p>
+<hr>
+<h2 id="添加背景动态特效"><a href="#添加背景动态特效" class="headerlink" title="添加背景动态特效"></a>添加背景动态特效</h2><p>next下找到layout，layout.swig，把</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if theme.canvas_nest %&#125;</span><br><span class="line"> &lt;script type&#x3D;&quot;text&#x2F;javascript&quot; src&#x3D;&quot;&#x2F;&#x2F;cdn.bootcss.com&#x2F;canvas-nest.js&#x2F;1.0.0&#x2F;canvas-nest.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line"> &#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
+<p>–转载<br>复制到body标签内部的最下面，找到主题配置文件里的canvas_nest:，把它的配置改为true，就设置完成了。<br>如果要是想修改特效条纹的数量，颜色，粗细等，则把上面layout.swig中刚才添加的代码改为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if theme.canvas_nest %&#125;</span><br><span class="line">&lt;script type&#x3D;&quot;text&#x2F;javascript&quot;</span><br><span class="line">color&#x3D;&quot;0,0,255&quot; opacity&#x3D;&#39;0.7&#39; zIndex&#x3D;&quot;-2&quot; count&#x3D;&quot;99&quot; src&#x3D;&quot;&#x2F;&#x2F;cdn.bootcss.com&#x2F;canvas-nest.js&#x2F;1.0.0&#x2F;canvas-nest.min.js&quot;&gt;&lt;&#x2F;script&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
+<p>–转载<br>color ：线条颜色, 默认: ‘0,0,0’；三个数字分别为(R,G,B)<br>opacity: 线条透明度（0~1）, 默认: 0.5<br>count: 线条的总数量, 默认: 150<br>zIndex: 背景的z-index属性，css属性用于控制所在层的位置, 默认: -1<br>Ps:此模块基本是借鉴网络其他博主的教程。</p>
+<hr>
+<h2 id="Ps："><a href="#Ps：" class="headerlink" title="Ps："></a>Ps：</h2><p>到这里基本的官方给出的主题优化基本都介绍完了，当然这都是我用到的，还有一些我觉得没什么用我就没添加所以也就没写教程，欢迎大佬们补充在下面评论区。<br>下面我会介绍一些自己研究的自定义技巧。</p>
+<h1 id="主题修改自定义技巧"><a href="#主题修改自定义技巧" class="headerlink" title="主题修改自定义技巧"></a>主题修改自定义技巧</h1><hr>
+<h2 id="修改背景图片"><a href="#修改背景图片" class="headerlink" title="修改背景图片"></a>修改背景图片</h2><p>这个是我一开始就想做的，背景一片白确实不怎么好看，可是又是因为next新版本的原因，没找到一个修改背景图片的方法，那只能自己动手丰衣足食了。<br>开检查查看代码的时候，我发现最后面的背景的css为body，位置不用说也知道，在next的css文件夹中，我找了半天，在next，source的css中，scaffolding中有个base.styl中，找到body<br>添加以下代码<br>  background:url();<br>      background-repeat:no-repeat;<br>      background-attachment:fixed;<br>      background-position:50% 50%;<br>      background-size:cover;<br>把之前的background给删掉，url后面添加图片地址，我试过集中本地链接，不知道为什么，都炸了，我看到网上有什么自动换背景图片，我试了试真行，然后就从网上找了几张图试了试确实可以，然后就想到了用图床，点击<a href="https://imgchr.com/" target="_blank" rel="noopener">图床</a>把本地图片提交，就可以得到图片的网络连接。<br>然后我在说一下下面的配置，主要是最后这个，如果没有这个的话，手机端是直接没法看的，加上这个手机端也不是很好搞看，我还没研究出来怎样适配手机端，就先这样吧。</p>
+<hr>
+<h2 id="修改字体颜色"><a href="#修改字体颜色" class="headerlink" title="修改字体颜色"></a>修改字体颜色</h2><h1 id="对于图片问题的解决"><a href="#对于图片问题的解决" class="headerlink" title="对于图片问题的解决"></a>对于图片问题的解决</h1><hr>
+<h2 id="我在上传图片时遇到的问题"><a href="#我在上传图片时遇到的问题" class="headerlink" title="我在上传图片时遇到的问题"></a>我在上传图片时遇到的问题</h2><p>![](img/1.jpg)，img是我在与文章相同的子目录中，直接运行markdown的话是可以显示的，然后在本地查看博客或者是推送到github上都是无法显示的。</p>
+<hr>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>通过询问度娘最也解决了。<br><br>1.首先要把_config.yml中的post_asset_folder: false，要把false改成true，修改之后才可以上传图片。<br><br>2.要安装一个插件，我操作的时候过程有点乱，也不确定装没装上，不过看网上说需要安装这个插件，npm install hexo-asset-image –save，要在博客的根目录下运行这条指令<br><br>3.这是我烦的主要问题，我的链接图片的格式不对![](img/1.jpg)，不能将图片放在与文章相同子目录，正确的方式是在source中新建一个文件夹将其命名为images，把图片放在里面，连接的时候格式是![](/images/1.jpg)，第一个“/”的意思是根目录，也就是代表了source。其他格式的链接都不会成功，我尝试的只有这种情况在在博客中图片是可以显示的。具体原因不明。<br><br>4.完成这些步骤之后，运行blog就可以看到图片了。</p>
+<hr>
+<h2 id="Ps：-1"><a href="#Ps：-1" class="headerlink" title="Ps："></a>Ps：</h2><p>希望这篇文章对于初次搭建hexo blog的小白有所帮助，对于hexo中图片显示的问题，我还是有许多地方不懂，还希望大佬们指导。</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>谢谢你，微信还是支付宝？</div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="西厢 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="西厢 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/blog/" rel="tag"><i class="fa fa-tag"></i> blog</a>
+              <a href="/tags/hexo/" rel="tag"><i class="fa fa-tag"></i> hexo</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/01/27/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" rel="prev" title="第一篇博客">
+      <i class="fa fa-chevron-left"></i> 第一篇博客
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/01/27/%E5%80%8D%E5%A2%9E%E6%80%9D%E6%83%B3%E4%B8%8E%E5%88%9D%E8%AF%86STL%E5%BA%93/" rel="next" title="倍增思想与初识STL库">
+      倍增思想与初识STL库 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80ODQwNi8yNDkwMA=="></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#图是灵魂"><span class="nav-number">1.1.</span> <span class="nav-text">图是灵魂</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不知道说什么也要说"><span class="nav-number">1.2.</span> <span class="nav-text">不知道说什么也要说</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hexo建站–本文部署到Github"><span class="nav-number">2.</span> <span class="nav-text">hexo建站–本文部署到Github</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#下载内容"><span class="nav-number">2.1.</span> <span class="nav-text">下载内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#部署到github"><span class="nav-number">2.2.</span> <span class="nav-text">部署到github</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Next主题配置相关问题"><span class="nav-number">3.</span> <span class="nav-text">Next主题配置相关问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#温馨提示"><span class="nav-number">3.1.</span> <span class="nav-text">温馨提示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更换Next主题"><span class="nav-number">3.2.</span> <span class="nav-text">更换Next主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#博客基本信息配置"><span class="nav-number">3.3.</span> <span class="nav-text">博客基本信息配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#菜单目录配置"><span class="nav-number">3.4.</span> <span class="nav-text">菜单目录配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加社交链接"><span class="nav-number">3.5.</span> <span class="nav-text">添加社交链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加字数和阅读时间统计"><span class="nav-number">3.6.</span> <span class="nav-text">添加字数和阅读时间统计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加访问人数，访问次数"><span class="nav-number">3.7.</span> <span class="nav-text">添加访问人数，访问次数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加live2d看板娘"><span class="nav-number">3.8.</span> <span class="nav-text">添加live2d看板娘</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加评论系统"><span class="nav-number">3.9.</span> <span class="nav-text">添加评论系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加打赏功能"><span class="nav-number">3.10.</span> <span class="nav-text">添加打赏功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加背景动态特效"><span class="nav-number">3.11.</span> <span class="nav-text">添加背景动态特效</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ps："><span class="nav-number">3.12.</span> <span class="nav-text">Ps：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#主题修改自定义技巧"><span class="nav-number">4.</span> <span class="nav-text">主题修改自定义技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#修改背景图片"><span class="nav-number">4.1.</span> <span class="nav-text">修改背景图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改字体颜色"><span class="nav-number">4.2.</span> <span class="nav-text">修改字体颜色</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对于图片问题的解决"><span class="nav-number">5.</span> <span class="nav-text">对于图片问题的解决</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#我在上传图片时遇到的问题"><span class="nav-number">5.1.</span> <span class="nav-text">我在上传图片时遇到的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方法"><span class="nav-number">5.2.</span> <span class="nav-text">解决方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ps：-1"><span class="nav-number">5.3.</span> <span class="nav-text">Ps：</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="西厢"
+      src="/images/%E5%A4%B4%E5%83%8F.jpg">
+  <p class="site-author-name" itemprop="name">西厢</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zhangzhibang0309" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhangzhibang0309" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://mail.qq.com/cgi-bin/frame_html?sid=cwpQaArYTO7AVkcZ&r=77b2aa8183752a7101bc189629669b65" title="E-Mail → https:&#x2F;&#x2F;mail.qq.com&#x2F;cgi-bin&#x2F;frame_html?sid&#x3D;cwpQaArYTO7AVkcZ&amp;r&#x3D;77b2aa8183752a7101bc189629669b65" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/7309637978/profile?topnav=1&wvr=6" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;7309637978&#x2F;profile?topnav&#x3D;1&amp;wvr&#x3D;6" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">西厢</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">14k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">13 分钟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='11,46,46' opacity='0.5' zIndex='-1' count='150' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/tororo.model.json"},"display":{"position":"right","hOffset":-40,"vOffset":-30,"width":200,"height":350},"mobile":{"show":true},"log":false});</script></body>
+</html>
