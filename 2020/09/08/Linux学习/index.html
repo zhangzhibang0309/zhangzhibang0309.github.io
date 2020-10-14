@@ -1,278 +1,69 @@
+
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" class="loading">
 <head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Linux学习 - 私のブログ</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="初步Linux认识
 
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
-  <script src="/lib/pace/pace.min.js"></script>
-
-
-<script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://zhangzhibang0309.github.io').hostname,
-    root: '/',
-    scheme: 'Pisces',
-    version: '7.7.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: '',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
-
-  <meta name="description" content="初步Linux认识">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Linux认知">
-<meta property="og:url" content="https://zhangzhibang0309.github.io/2020/09/08/Linux%E5%AD%A6%E4%B9%A0/index.html">
-<meta property="og:site_name" content="私のブログ">
-<meta property="og:description" content="初步Linux认识">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://zhangzhibang0309.github.io/images/Linux/UNIX%E8%BF%9B%E5%8C%96%E5%8F%B2.png">
-<meta property="og:image" content="https://zhangzhibang0309.github.io/images/Linux/KenThompson.jpg">
-<meta property="og:image" content="https://zhangzhibang0309.github.io/images/Linux/DennisRitchie.jpg">
-<meta property="og:image" content="https://zhangzhibang0309.github.io/images/Linux/Stallman.jpg">
-<meta property="og:image" content="https://zhangzhibang0309.github.io/images/Linux/BillJoy.jpg">
-<meta property="og:image" content="https://zhangzhibang0309.github.io/images/Linux/Tanenbaum.jpg">
-<meta property="og:image" content="https://zhangzhibang0309.github.io/images/Linux/LinusTorvalds.jpg">
-<meta property="og:image" content="https://zhangzhibang0309.github.io/images/Linux/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF.png">
-<meta property="article:published_time" content="2020-09-08T13:14:59.000Z">
-<meta property="article:modified_time" content="2020-09-08T13:45:40.355Z">
-<meta property="article:author" content="西厢">
-<meta property="article:tag" content="Linux">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://zhangzhibang0309.github.io/images/Linux/UNIX%E8%BF%9B%E5%8C%96%E5%8F%B2.png">
-
-<link rel="canonical" href="https://zhangzhibang0309.github.io/2020/09/08/Linux%E5%AD%A6%E4%B9%A0/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome: false,
-    isPost: true
-  };
-</script>
-
-  <title>Linux认知 | 私のブログ</title>
-  
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">私のブログ</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-  </div>
-
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-</div>
-
-
-<nav class="site-nav">
-  
-  <ul id="menu" class="menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">21</span></a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">7</span></a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">18</span></a>
-
-  </li>
-        <li class="menu-item menu-item-schedule">
-
-    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>日程表</a>
-
-  </li>
-  </ul>
-
-</nav>
-</div>
-    </header>
-
+Linux历史简介操作系统始于二十世纪五十年代，当时的操作系统能运行批处理程序。批处理程序不需要用户的交互，它从文件或者穿孔卡片读取数据，然后输出到另外一个文件或者打印机。
+二,"> 
+    <meta name="author" content="西厢"> 
+    <link rel="alternative" href="atom.xml" title="私のブログ" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
 
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+<meta name="generator" content="Hexo 4.2.0"></head>
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
+<body class="loading">
+    <span id="config-title" style="display:none">私のブログ</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://zhangzhibang0309.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">Linux学习</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
 
-          <div class="content">
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Linux学习</h1>
+        <div class="stuff">
+            <span>九月 08, 2020</span>
             
 
-  <div class="posts-expand">
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://zhangzhibang0309.github.io/2020/09/08/Linux%E5%AD%A6%E4%B9%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/%E5%A4%B4%E5%83%8F.jpg">
-      <meta itemprop="name" content="西厢">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="私のブログ">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          Linux认知
-        </h1>
-
-        <div class="post-meta">
-        
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-09-08 21:14:59 / 修改时间：21:45:40" itemprop="dateCreated datePublished" datetime="2020-09-08T21:14:59+08:00">2020-09-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
-                    <span itemprop="name">笔记</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span><br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.7k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
         </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-        <h1 id="初步Linux认识"><a href="#初步Linux认识" class="headerlink" title="初步Linux认识"></a>初步Linux认识</h1><a id="more"></a>
+        <div class="content markdown">
+            <h1 id="初步Linux认识"><a href="#初步Linux认识" class="headerlink" title="初步Linux认识"></a>初步Linux认识</h1><a id="more"></a>
 
 <h2 id="Linux历史简介"><a href="#Linux历史简介" class="headerlink" title="Linux历史简介"></a>Linux历史简介</h2><p>操作系统始于二十世纪五十年代，当时的操作系统能运行批处理程序。批处理程序不需要用户的交互，它从文件或者穿孔卡片读取数据，然后输出到另外一个文件或者打印机。</p>
 <p>二十世纪六十年代初，交互式操作系统开始流行。它不仅仅可以交互，还能使多个用户从不同的终端同时操作主机。这样的操作系统被称作分时操作系统，它的出现对批处理操作系统是个极大的挑战。许多人尝试开发分时操作系统， 其中包括一些大学的研究项目和商业项目。当时有个项目叫做 Multics ，它的技术在当时很具有创新性。 Multics 项目的开发并不顺利，它花费了远超过预计的资金，却没有在操作系统市场上占到多少份额。而参加该项目的一个开发团体——贝尔实验室退出了这个项目。他们在退出后开发了他们自己的一个操作系统—— UNIX 。</p>
@@ -292,296 +83,159 @@
 <li>Tanenbaum：Minix 开发者<br><img src="/images/Linux/Tanenbaum.jpg" alt></li>
 <li>Linus Torvalds：Linux 之父，芬兰赫尔辛基大学<br><img src="/images/Linux/LinusTorvalds.jpg" alt></li>
 </ol>
-<h2 id="学习目标"><a href="#学习目标" class="headerlink" title="学习目标"></a>学习目标</h2><p>先了解发行版（Ubuntu，CentOS，Fedora，OpenSUSE，Debian，Mint 等等），我装的是CentOS</p>
-<p>学习路线：<br><img src="/images/Linux/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF.png" alt></p>
+<h2 id="学习路线"><a href="#学习路线" class="headerlink" title="学习路线"></a>学习路线</h2><p>linux学习目标不同，我的方向是java，所以我学习linux是为了将java程序部署到linux。<br>学习流程：<br>1.linux环境下的基本操作命令，包括文件操作命令（rm mkdir chmod chown） 编辑工具使用(vi vim) linux用户管理(useradd userdel usermod)等<br>2.linux各种配置（环境变量配置 网络配置 服务配置）<br>3.linux下如何搭建对应语言的开发环境（大数据 javaEE python）<br>4.能编写shell脚本，对linux服务器及逆行维护。<br>以下是深入：<br>5.能进行安全设置，防止攻击，保障服务器正常运行，能对系统调优。<br>6.深入理解Linux系统（对内核有研究），熟练掌握大型网站应用架构组成、并熟悉各个环节的部署和维护方法。</p>
+<h1 id="入门等基本操作命令的学习"><a href="#入门等基本操作命令的学习" class="headerlink" title="入门等基本操作命令的学习"></a>入门等基本操作命令的学习</h1><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="Ubuntu的安装"><a href="#Ubuntu的安装" class="headerlink" title="Ubuntu的安装"></a>Ubuntu的安装</h3><h3 id="增强功能安装以及创建共享文件夹"><a href="#增强功能安装以及创建共享文件夹" class="headerlink" title="增强功能安装以及创建共享文件夹"></a>增强功能安装以及创建共享文件夹</h3><p>在这个地方安装增强功能，如果报错的话（类似于什么驱动器占用之类的就在左边vBox弹出一下），安装完毕之后重启。<br><img src="/images/Linux/%E5%A2%9E%E5%BC%BA%E5%8A%9F%E8%83%BD1.png" alt><br>在下面这个地方打开共享文件夹的设置（要现在本地创建一个文件夹，然后也在linux下创建对应的文件夹）<br><img src="/images/Linux/%E5%A2%9E%E5%BC%BA%E5%8A%9F%E8%83%BD2.png" alt><br>进行下面一系列的配置<br><img src="/images/Linux/%E5%A2%9E%E5%BC%BA%E5%8A%9F%E8%83%BD3.png" alt><br><img src="/images/Linux/%E5%A2%9E%E5%BC%BA%E5%8A%9F%E8%83%BD4.png" alt><br>然后打开终端，运行两条命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir &#x2F;mnt&#x2F;share &#x2F;&#x2F;在根目录下的mnt中创建一个名为share的文件夹</span><br><span class="line">sudo mount -t vboxsf share &#x2F;mnt&#x2F;share&#x2F; &#x2F;&#x2F;前面的share是在电脑本地创建的共享文件夹，而后面的路径则是你在linux中创建的共享文件夹的路径</span><br></pre></td></tr></table></figure>
+<p>到此为止就完成了</p>
+<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><p>在linux世界中，一切皆文件<br><img src="/images/Linux/%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.png" alt><br><img src="/images/Linux/%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%841.png" alt><br><img src="/images/Linux/%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%842.png" alt><br><img src="/images/Linux/%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%843.png" alt><br><img src="/images/Linux/%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%844.png" alt><br><img src="/images/Linux/%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%845.png" alt><br>总结：<br>1.linux只有一个跟目录/<br>2.linux各个目录存放的内容是规划好，不能乱放文件<br>3.linux一切皆文件<br>4.linux目录下存放什么内容要知道</p>
+<h2 id="远程操控linux"><a href="#远程操控linux" class="headerlink" title="远程操控linux"></a>远程操控linux</h2><h3 id="远程登陆（xshell5）"><a href="#远程登陆（xshell5）" class="headerlink" title="远程登陆（xshell5）"></a>远程登陆（xshell5）</h3><h3 id="远程传输文件（xftp5）"><a href="#远程传输文件（xftp5）" class="headerlink" title="远程传输文件（xftp5）"></a>远程传输文件（xftp5）</h3><h2 id="vi和vim的使用"><a href="#vi和vim的使用" class="headerlink" title="vi和vim的使用"></a>vi和vim的使用</h2><h3 id="常见模式"><a href="#常见模式" class="headerlink" title="常见模式"></a>常见模式</h3><p>1.正常模式<br>在正常模式下，可以使用快捷键<br>i进入编辑模式<br>2.插入模式/编辑模式<br>该模式下，程序员可以输入内容<br>按下i计科进入编辑模式<br>esc退出<br>3.命令行模式<br>:进入<br>:wq-保存 :q-退出 :q!-强制退出<br>在这个模式下，可以提供你相关的指令，完成读取、存盘、替换、离开、vim、显示行号等的动作是在此模式中完成的!</p>
+<h3 id="快捷键的使用"><a href="#快捷键的使用" class="headerlink" title="快捷键的使用"></a>快捷键的使用</h3><p>1）拷贝当前行 yy 拷贝光标所在的下面五行 5yy 粘贴 p<br>2）删除当前行 dd,删除当前行向下的5行 5dd<br>3）在文件中查找某个单词（命令行下 /关键词 回车查找 输入n查找下一个）<br>4）设置文件的行号，取消文件的行号（命令行下 :set nu  取消行号 :set nonu）<br>5）在正常模式下G光标到文档最末行 gg到文档最首行<br>6）撤销动作，在正常模式下输入u<br>7）将光标移动到第20行 正常模式下 先输入20 然后按shift + g</p>
+<h2 id="开机重启等操作"><a href="#开机重启等操作" class="headerlink" title="开机重启等操作"></a>开机重启等操作</h2><h3 id="shutdown"><a href="#shutdown" class="headerlink" title="shutdown"></a>shutdown</h3><p>shutdown -h now: 立即关机<br>shutdown -h: 表示一分钟后关机<br>shutdown -r now: 立即重启</p>
+<h3 id="halt"><a href="#halt" class="headerlink" title="halt"></a>halt</h3><p>就是直接使用，效果等价于关机</p>
+<h3 id="reboot"><a href="#reboot" class="headerlink" title="reboot"></a>reboot</h3><p>就是重启系统。</p>
+<h3 id="syn"><a href="#syn" class="headerlink" title="syn"></a>syn</h3><p>把内存的数据同步到磁盘</p>
+<h2 id="用户相关操作"><a href="#用户相关操作" class="headerlink" title="用户相关操作"></a>用户相关操作</h2><p>1.logout用户注销只能在运行级别（远程操控使用）</p>
+<h2 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h2><p>linux用户管理思想<br><img src="/images/Linux/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86.png" alt><br>每个用户都要先申请<br>每个用户至属于一个组 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">特别说明</span><br><span class="line">cd--切换目录</span><br></pre></td></tr></table></figure>
+<h3 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">useradd &#x2F;&#x2F;会自动创建与用户名同名家目录</span><br><span class="line">useradd -d &#x2F;home&#x2F;xxx 用户名 &#x2F;&#x2F;这种方式可以改变家目录名字</span><br></pre></td></tr></table></figure>
+<h3 id="给用户指定修改密码"><a href="#给用户指定修改密码" class="headerlink" title="给用户指定修改密码"></a>给用户指定修改密码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd 用户名 &#x2F;&#x2F;更改密码 只能用root权限</span><br></pre></td></tr></table></figure>
+<h3 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h3><h4 id="删除用户xm-保留家目录"><a href="#删除用户xm-保留家目录" class="headerlink" title="删除用户xm 保留家目录"></a>删除用户xm 保留家目录</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">userdel xm &#x2F;&#x2F;root权限</span><br></pre></td></tr></table></figure>
+<h4 id="删除用户xh-删除家目录"><a href="#删除用户xh-删除家目录" class="headerlink" title="删除用户xh 删除家目录"></a>删除用户xh 删除家目录</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">userdel -r xh &#x2F;&#x2F;root权限 就算家目录与用户名不同也可以删除</span><br></pre></td></tr></table></figure>
+<h4 id="Ps"><a href="#Ps" class="headerlink" title="Ps:"></a>Ps:</h4><p>1.一般保留家目录（加目录中有大量之前的源码）</p>
+<h3 id="查询用户信息"><a href="#查询用户信息" class="headerlink" title="查询用户信息"></a>查询用户信息</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">id 用户名</span><br><span class="line">结果：</span><br><span class="line">uid&#x3D;用户id gid&#x3D;组id 组&#x3D;组名</span><br></pre></td></tr></table></figure>
+<h3 id="切换用户"><a href="#切换用户" class="headerlink" title="切换用户"></a>切换用户</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">su - 用户名 &#x2F;&#x2F;root切换其他不需要密码</span><br><span class="line">exit &#x2F;&#x2F;切换到原来的用户</span><br></pre></td></tr></table></figure>
+<h3 id="查看当前用户"><a href="#查看当前用户" class="headerlink" title="查看当前用户"></a>查看当前用户</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">who am i</span><br></pre></td></tr></table></figure>
+<h3 id="用户组"><a href="#用户组" class="headerlink" title="用户组"></a>用户组</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">groupadd 组名 &#x2F;&#x2F;创建一个组</span><br><span class="line">groupdel 组名 &#x2F;&#x2F;删除一个组</span><br><span class="line">useradd -g 用户组 用户名 &#x2F;&#x2F;创建用户 并且创建一个用户组并将这个用户归属进去</span><br><span class="line">usermod -g 已存在的用户组 用户名 &#x2F;&#x2F;将这个用户的用户组修改为这个组</span><br></pre></td></tr></table></figure>
+<h3 id="用户和组相关文件"><a href="#用户和组相关文件" class="headerlink" title="用户和组相关文件"></a>用户和组相关文件</h3><h4 id="etc-passwd"><a href="#etc-passwd" class="headerlink" title="/etc/passwd"></a>/etc/passwd</h4><p>用户的配置文件，记录用户的各种信息<br>每行的含义：用户名：口令：用户标识号：组标识号：注释性描述：<br>主目录：登录Shell</p>
+<h4 id="etc-shadow"><a href="#etc-shadow" class="headerlink" title="/etc/shadow"></a>/etc/shadow</h4><p>口令的配置文件<br>每行的含义：登录名：加密口令：最后一次修改时间：最小时间间隔：最大时间间隔：警告时间：不活动时间：失效时间：标志</p>
+<h4 id="etc-group"><a href="#etc-group" class="headerlink" title="/etc/group"></a>/etc/group</h4><p>组的配置文件，记录Linux包含的组的信息<br>每行含义：组名：口令：组标识号组内用户列表</p>
+<h2 id="实用指令"><a href="#实用指令" class="headerlink" title="实用指令"></a>实用指令</h2><h3 id="指定运行级别（这块centos与Ubuntu不太一样，而且版本不同也有区别）"><a href="#指定运行级别（这块centos与Ubuntu不太一样，而且版本不同也有区别）" class="headerlink" title="指定运行级别（这块centos与Ubuntu不太一样，而且版本不同也有区别）"></a>指定运行级别（这块centos与Ubuntu不太一样，而且版本不同也有区别）</h3><p>0: 关机<br>1: 单用户（找回丢失密码）<br>2: 多用户无网络服务<br>3: 多用户有网络服务<br>4: 保留<br>5: 图形界面<br>6: 重启<br>注意： 在/etc/inittab的id:5:initdefault:这一行中的数字可修改运行级别</p>
+<h4 id="切换到指定运行级别的指令"><a href="#切换到指定运行级别的指令" class="headerlink" title="切换到指定运行级别的指令"></a>切换到指定运行级别的指令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">init[0123456]</span><br><span class="line">&#x2F;&#x2F;可以切换不同的运行级别</span><br></pre></td></tr></table></figure>
+<h4 id="找回root密码"><a href="#找回root密码" class="headerlink" title="找回root密码"></a>找回root密码</h4><p>进入到单用户模式，然后修改root密码。因为进入单用户模式，root不需要密码就可以登录。<br>总之思路差不多</p>
+<h4 id="centOS"><a href="#centOS" class="headerlink" title="centOS"></a>centOS</h4><h4 id="Ubuntu"><a href="#Ubuntu" class="headerlink" title="Ubuntu"></a>Ubuntu</h4><h3 id="帮助指令"><a href="#帮助指令" class="headerlink" title="帮助指令"></a>帮助指令</h3><p>当我们对某个指令不熟悉是，我们可以使用Linux提供的帮助指令来了解指令使用方法。</p>
+<h4 id="man"><a href="#man" class="headerlink" title="man"></a>man</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man 命令或配置文件</span><br></pre></td></tr></table></figure>
+<h4 id="help"><a href="#help" class="headerlink" title="help"></a>help</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">help 命令</span><br></pre></td></tr></table></figure>
+<h3 id="文件目录类"><a href="#文件目录类" class="headerlink" title="文件目录类"></a>文件目录类</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pwd指令</span><br><span class="line">pwd &#x2F;&#x2F;显示所在目录</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ls指令</span><br><span class="line">ls &#x2F;&#x2F;普通形式</span><br><span class="line">ls -l &#x2F;&#x2F;长格式</span><br><span class="line">ls -a &#x2F;&#x2F;显示隐藏文件</span><br></pre></td></tr></table></figure>
+<p>绝对路径和相对路径：<br>思考题：<br>1）当前工作目录是/root，我们希望进入到/home下<br>绝对路径：/home<br>相对路径：../home</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd指令</span><br><span class="line">cd [参数]（功能描述，切换到指定目录）</span><br><span class="line">cd ~ &#x2F;&#x2F;到家目录</span><br><span class="line">cd .. &#x2F;&#x2F;到上一级目录</span><br><span class="line">cd ..&#x2F;..&#x2F;root &#x2F;&#x2F;从&#x2F;usr&#x2F;lib用相对路径写法到root目录</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir指令 用于创建目录</span><br><span class="line">mkdir [选项] 要创建的目录 &#x2F;&#x2F;用于创建目录</span><br><span class="line">mkdir &#x2F;home&#x2F;dog &#x2F;&#x2F;在home下创建一个dog目录，但是只能创建单级目录</span><br><span class="line">mkdir -p &#x2F;home&#x2F;animal&#x2F;tiger &#x2F;&#x2F;可以创建多级目录</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rmdir指令 --注意是目录</span><br><span class="line">rmdir [选项] 要删除的目录 &#x2F;&#x2F;用于删除目录</span><br><span class="line">rmdir &#x2F;home&#x2F;dog &#x2F;&#x2F;删除dog目录，不可删除非空目录</span><br><span class="line">rm -rf &#x2F;home&#x2F;dog &#x2F;&#x2F;可以删除非空目录</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">touh指令 --注意是文件</span><br><span class="line">touch hello.txt &#x2F;&#x2F;这个是创建在工作目录下</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cp指令 --拷贝</span><br><span class="line">cp [选项] source dest &#x2F;&#x2F;康贝文件到指定目录</span><br><span class="line">cp aaa.txt bbb&#x2F; &#x2F;&#x2F;将当前目录下的aaa.txt文件复制到当前目录的bbb文件夹里面</span><br><span class="line">cp -r test&#x2F; zwj&#x2F; &#x2F;&#x2F;将工作目录中的test文件夹递归复制到zwj文件夹</span><br><span class="line">\cp -r test&#x2F; zwj&#x2F; &#x2F;&#x2F;如果目标目录下有相同文件，这个指令强制覆盖</span><br></pre></td></tr></table></figure>
 
-    </div>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">rm指令 --删除</span><br><span class="line">rm [选项] 要删除的文件路径</span><br><span class="line">rm aaa.txt &#x2F;&#x2F;删除aaa.txt</span><br><span class="line">rm -rf bbb&#x2F; &#x2F;&#x2F;删除整个目录</span><br><span class="line">rm -f aaa.txt &#x2F;&#x2F;不会有提示你是否删除</span><br></pre></td></tr></table></figure>
 
-    
-    
-    
-        <div class="reward-container">
-  <div>谢谢你，微信还是支付宝？</div>
-  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
-    打赏
-  </button>
-  <div id="qr" style="display: none;">
-      
-      <div style="display: inline-block;">
-        <img src="/images/wechatpay.jpg" alt="西厢 微信支付">
-        <p>微信支付</p>
-      </div>
-      
-      <div style="display: inline-block;">
-        <img src="/images/alipay.jpg" alt="西厢 支付宝">
-        <p>支付宝</p>
-      </div>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mv指令 --移动文件或者重命名</span><br><span class="line">mv oldName newName &#x2F;&#x2F;重命名</span><br><span class="line">mv 路径1 路径2 &#x2F;&#x2F;移动文件</span><br><span class="line">mv aaa.txt pig.txt &#x2F;&#x2F;给aaa重命名</span><br><span class="line">mv pig.txt &#x2F;root&#x2F; &#x2F;&#x2F;将当前目录的pig移动到root下</span><br></pre></td></tr></table></figure>
 
-  </div>
-</div>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cat指令 --只读方式查看文件内容</span><br><span class="line">cat [选项] 要查看的文件</span><br><span class="line">cat &#x2F;etc&#x2F;profile &#x2F;&#x2F;查看文件</span><br><span class="line">cat -n &#x2F;etc&#x2F;profile &#x2F;&#x2F;显示行号</span><br><span class="line">cat -n &#x2F;etc&#x2F;profile | more &#x2F;&#x2F;查看文件并且分页显示</span><br></pre></td></tr></table></figure>
 
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">more指令 --一全屏的方式显示文本内容</span><br><span class="line">more &#x2F;etc&#x2F;profile &#x2F;&#x2F;打开这个文件</span><br><span class="line">空格 &#x2F;&#x2F;向下下一页</span><br><span class="line">回车 &#x2F;&#x2F;向下翻一行</span><br><span class="line">q &#x2F;&#x2F;退出more，不在显示文本内容</span><br><span class="line">ctrl + F &#x2F;&#x2F;向下滚动一屏</span><br><span class="line">ctrl + B &#x2F;&#x2F;返回上一屏</span><br><span class="line">&#x3D; &#x2F;&#x2F;输出当前行号</span><br><span class="line">:f &#x2F;&#x2F;输出文件名和当前行的行号</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">less指令 --对于显示大型文件有较高的效率</span><br><span class="line">有一些快捷键，看下面图片</span><br></pre></td></tr></table></figure>
+<p><img src="/images/Linux%E5%AD%A6%E4%B9%A0/less%E5%BF%AB%E6%8D%B7%E9%94%AE.png" alt></p>
 
-      <footer class="post-footer">
-          
-          <div class="post-tags">
-              <a href="/tags/Linux/" rel="tag"><i class="fa fa-tag"></i> Linux</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2020/09/02/MySql%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B%EF%BC%88%E8%BD%AC%E8%BD%BD%EF%BC%89/" rel="prev" title="MySQL安装教程（转载）">
-      <i class="fa fa-chevron-left"></i> MySQL安装教程（转载）
-    </a></div>
-      <div class="post-nav-item"></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-  </div>
-
-
-          </div>
-          
-    
-  <div class="comments">
-    <div id="lv-container" data-id="city" data-uid="MTAyMC80ODQwNi8yNDkwMA=="></div>
-  </div>
-  
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let activeClass = CONFIG.comments.activeClass;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://www.0dutv.com/plug/down/up2.php/460876.mp3'></li>
+                        
+                    
+                </ul>
+            
         </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#初步Linux认识"><span class="nav-number">1.</span> <span class="nav-text">初步Linux认识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux历史简介"><span class="nav-number">1.1.</span> <span class="nav-text">Linux历史简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下面列举一些-Linux-诞生大事件："><span class="nav-number">1.1.1.</span> <span class="nav-text">下面列举一些 Linux 诞生大事件：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux重要人物"><span class="nav-number">1.2.</span> <span class="nav-text">Linux重要人物</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#学习目标"><span class="nav-number">1.3.</span> <span class="nav-text">学习目标</span></a></li></ol></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="西厢"
-      src="/images/%E5%A4%B4%E5%83%8F.jpg">
-  <p class="site-author-name" itemprop="name">西厢</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">7</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">21</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/zhangzhibang0309" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhangzhibang0309" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://mail.qq.com/cgi-bin/frame_html?sid=cwpQaArYTO7AVkcZ&r=77b2aa8183752a7101bc189629669b65" title="E-Mail → https:&#x2F;&#x2F;mail.qq.com&#x2F;cgi-bin&#x2F;frame_html?sid&#x3D;cwpQaArYTO7AVkcZ&amp;r&#x3D;77b2aa8183752a7101bc189629669b65" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="https://weibo.com/7309637978/profile?topnav=1&wvr=6" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;7309637978&#x2F;profile?topnav&#x3D;1&amp;wvr&#x3D;6" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
-      </span>
-  </div>
+    <div id='gitalk-container' class="comment link"
+		data-enable='false'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
 
-
-
-      </div>
 
     </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2020</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">西厢</span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-area-chart"></i>
-    </span>
-      <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">27k</span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item-icon">
-      <i class="fa fa-coffee"></i>
-    </span>
-      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">25 分钟</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.0
-  </div>
-
-        
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="总访客量">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="总访问量">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
+    
 </div>
 
 
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
-
-  
-  
-  <script color='11,46,46' opacity='0.5' zIndex='-1' count='150' src="/lib/canvas-nest/canvas-nest.min.js"></script>
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-<script>
-NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
-  window.livereOptions = {
-    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
-  };
-  (function(d, s) {
-    var j, e = d.getElementsByTagName(s)[0];
-    if (typeof LivereTower === 'function') { return; }
-    j = d.createElement(s);
-    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-    j.async = true;
-    e.parentNode.insertBefore(j, e);
-  })(document, 'script');
-});
-</script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
-  
-
+    </div>
+</div>
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"right","hOffset":-40,"vOffset":-30,"width":200,"height":350},"mobile":{"show":true},"log":false});</script></body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
 </html>

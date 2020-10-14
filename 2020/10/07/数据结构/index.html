@@ -1,0 +1,212 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>数据结构 - 私のブログ</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Fechin,"> 
+    <meta name="description" content="类c语言补充以下面的顺序表定义来说明
+1234typedef struct &amp;#123;	ElemType data[]; //ElemType *data;	int length;&amp;#125;Sq,"> 
+    <meta name="author" content="西厢"> 
+    <link rel="alternative" href="atom.xml" title="私のブログ" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">私のブログ</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://zhangzhibang0309.github.io"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">数据结构</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">数据结构</h1>
+        <div class="stuff">
+            <span>十月 07, 2020</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <h1 id="类c语言补充"><a href="#类c语言补充" class="headerlink" title="类c语言补充"></a>类c语言补充</h1><p>以下面的顺序表定义来说明</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">	ElemType data[]; <span class="comment">//ElemType *data;</span></span><br><span class="line">	<span class="keyword">int</span> length;</span><br><span class="line">&#125;SqList; <span class="comment">//顺序表类型</span></span><br></pre></td></tr></table></figure>
+<p>1.ElemType只是一种指代，需要什么类型写程序的时候要替换掉，不换的话也可以直接定义一下 typedef char ElemType;这样ElemType就相当于char<br>2.ElemType后面可以定义数组 也可定义指针类型，如果后面是指针类型的话可以动态分配存储空间，<br>例如</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SqList L;</span><br><span class="line">L.data = (ElemType*)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(ElemType)*MaxSize);</span><br></pre></td></tr></table></figure>
+<p>2.malloc(m)函数，开辟m字节长度的地址空间，并返回这段空间的首地址。<br>3.sizeof(x)计算，计算变量x的长度。<br>4.free(p)函数，释放指针p所指变量的存储空间，即彻底删除一个变量。以上三个需要有文件&lt;stdlib.h&gt;<br>5.或者用c++语法，int *p = new int; 或者 int *p = new int[10]; </p>
+<h1 id="线性表"><a href="#线性表" class="headerlink" title="线性表"></a>线性表</h1><h2 id="抽象数据类型定义线性表"><a href="#抽象数据类型定义线性表" class="headerlink" title="抽象数据类型定义线性表"></a>抽象数据类型定义线性表</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ADT List&#123;</span><br><span class="line">	数据对象: D = &#123;ai | ai属于Elemset,(i=<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,...,n,n&gt;<span class="number">0</span>)&#125;</span><br><span class="line">	数据关系: R=&#123;&lt;ai<span class="number">-1</span>,ai&gt; | ai<span class="number">-1</span>,ai属于D,(I = <span class="number">2</span>,<span class="number">3</span>,...,n)&#125;</span><br><span class="line">	基本操作:</span><br><span class="line">	InitList(&amp;L);</span><br><span class="line">	DestroyList(&amp;L);</span><br><span class="line">	ListInsert(&amp;L,i,e);</span><br><span class="line">	ListDelete(&amp;L,i,&amp;e);</span><br><span class="line">	<span class="comment">//..等等</span></span><br><span class="line">&#125;ADT List</span><br></pre></td></tr></table></figure>
+<h2 id="顺序表"><a href="#顺序表" class="headerlink" title="顺序表"></a>顺序表</h2><h3 id="顺序表的定义"><a href="#顺序表的定义" class="headerlink" title="顺序表的定义"></a>顺序表的定义</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LIST_INIT_SIZE 100 <span class="comment">//线性表存储空间的初始分配量</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">	ElemType elem[LIST_INIT_SIZE];</span><br><span class="line">	<span class="keyword">int</span> length; <span class="comment">//当前长度</span></span><br><span class="line">&#125; SqList;</span><br></pre></td></tr></table></figure>
+<h3 id="顺序表的一个例子"><a href="#顺序表的一个例子" class="headerlink" title="顺序表的一个例子"></a>顺序表的一个例子</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 代码实现举个例子 图书管理线性表</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXSIZE 10000 <span class="comment">//图书表可能达到的最大长度</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span> <span class="comment">//图书信息定义</span></span><br><span class="line">	<span class="keyword">char</span> no[<span class="number">20</span>]; <span class="comment">//图书ISBN</span></span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">50</span>]; <span class="comment">//图书名字</span></span><br><span class="line">	<span class="keyword">float</span> price; <span class="comment">//图书价格</span></span><br><span class="line">&#125;Book;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">	Book *elem; <span class="comment">//存储空间的基地址</span></span><br><span class="line">	<span class="keyword">int</span> length; <span class="comment">//图书表中当前图书个数</span></span><br><span class="line">&#125;SqList; <span class="comment">//图书表的顺序存储结构类型为SqList</span></span><br></pre></td></tr></table></figure>
+<h3 id="顺序表L的初始化（参数用引用）"><a href="#顺序表L的初始化（参数用引用）" class="headerlink" title="顺序表L的初始化（参数用引用）"></a>顺序表L的初始化（参数用引用）</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Status <span class="title">InitList_Sq</span><span class="params">(SqList &amp;L)</span> </span>&#123; <span class="comment">//构造一个空的顺序表L</span></span><br><span class="line">	L.elem = <span class="keyword">new</span> ElemType[MAXSIZE]; <span class="comment">//为顺序表分配空间</span></span><br><span class="line">	<span class="keyword">if</span>(!L.elem) <span class="built_in">exit</span>(OVERFLOE); <span class="comment">//存储分配失败</span></span><br><span class="line">	L.length = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="销毁顺序表"><a href="#销毁顺序表" class="headerlink" title="销毁顺序表"></a>销毁顺序表</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DestroyList</span><span class="params">(SqList &amp;L)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(L.elem) </span><br><span class="line">		<span class="keyword">delete</span> L.elem;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="清空顺序表"><a href="#清空顺序表" class="headerlink" title="清空顺序表"></a>清空顺序表</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DestroyList</span><span class="params">(SqList &amp;L)</span> </span>&#123;</span><br><span class="line">	L.length = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="求顺序表的长度"><a href="#求顺序表的长度" class="headerlink" title="求顺序表的长度"></a>求顺序表的长度</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">GetLength</span><span class="params">(SqList L)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> (L.length);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="判断顺序表是否为空"><a href="#判断顺序表是否为空" class="headerlink" title="判断顺序表是否为空"></a>判断顺序表是否为空</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">IsEmpty</span><span class="params">(SqList L)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(L.length == <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="顺序表的取值"><a href="#顺序表的取值" class="headerlink" title="顺序表的取值"></a>顺序表的取值</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">GetElem</span><span class="params">(SqList L,<span class="keyword">int</span> i,ElemType &amp;e)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(i&lt;<span class="number">1</span> || i&gt;L.length) </span><br><span class="line">		<span class="keyword">return</span> ERROR;</span><br><span class="line">	e = L.elem[i<span class="number">-1</span>];</span><br><span class="line">	<span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="栈和队列"><a href="#栈和队列" class="headerlink" title="栈和队列"></a>栈和队列</h1><h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><h3 id="顺序栈"><a href="#顺序栈" class="headerlink" title="顺序栈"></a>顺序栈</h3><h4 id="顺序栈的定义"><a href="#顺序栈的定义" class="headerlink" title="顺序栈的定义"></a>顺序栈的定义</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXSIZE 100</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">	SElemType *base; <span class="comment">//栈底指针</span></span><br><span class="line">	SElemType *top; <span class="comment">//栈顶指针</span></span><br><span class="line">	<span class="keyword">int</span> stacksize; <span class="comment">//栈可用最大容量</span></span><br><span class="line">&#125;SqStack;</span><br></pre></td></tr></table></figure>
+<h4 id="顺序栈的初始化"><a href="#顺序栈的初始化" class="headerlink" title="顺序栈的初始化"></a>顺序栈的初始化</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Status <span class="title">InitStack</span><span class="params">(SqStack &amp;S)</span> </span>&#123; <span class="comment">//构造一个空栈</span></span><br><span class="line">	S.base = <span class="keyword">new</span> SElemType[MAXSIZE]; <span class="comment">//S.base = (SElemType*)mollac(MAXSIZE*sizeof(SElemType));</span></span><br><span class="line">	<span class="keyword">if</span>(!S.base) <span class="built_in">exit</span> (OVERFLOW); <span class="comment">//存储分配失败</span></span><br><span class="line">	S.top = S.base; <span class="comment">//栈顶指针等于栈底指针 栈空</span></span><br><span class="line">	S.stacksize = MAXSIZE;</span><br><span class="line">	<span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="判断栈空"><a href="#判断栈空" class="headerlink" title="判断栈空"></a>判断栈空</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Status <span class="title">StackEmpty</span><span class="params">(SqStack S)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(S.top == S.base)</span><br><span class="line">		<span class="keyword">return</span> TRUE;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> FALSE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="求顺序栈长度"><a href="#求顺序栈长度" class="headerlink" title="求顺序栈长度"></a>求顺序栈长度</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Status <span class="title">StackLength</span><span class="params">(SqStack S)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> S.top - S.base;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="清空顺序栈"><a href="#清空顺序栈" class="headerlink" title="清空顺序栈"></a>清空顺序栈</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Status <span class="title">ClearStack</span><span class="params">(SqStack S)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(S.base) </span><br><span class="line">		S.top = S.base;</span><br><span class="line">	<span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="销毁顺序栈"><a href="#销毁顺序栈" class="headerlink" title="销毁顺序栈"></a>销毁顺序栈</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Status <span class="title">DestroyStack</span><span class="params">(SqStack &amp;S)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(S.base) &#123;</span><br><span class="line">		<span class="keyword">delete</span> S.base;</span><br><span class="line">		S.stacksize = <span class="number">0</span>;</span><br><span class="line">		S.base = S.top = <span class="literal">NULL</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="顺序栈的入栈"><a href="#顺序栈的入栈" class="headerlink" title="顺序栈的入栈"></a>顺序栈的入栈</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Status <span class="title">Push</span><span class="params">(SqStack &amp;S, SElemType e)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(S.top - S.base == S.stacksize) 栈满</span><br><span class="line">		<span class="keyword">return</span> ERROR;</span><br><span class="line">	*S.top++ = e; <span class="comment">//相当于*S.top = e; S.top++;</span></span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="顺序栈的出栈"><a href="#顺序栈的出栈" class="headerlink" title="顺序栈的出栈"></a>顺序栈的出栈</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Status <span class="title">Pop</span><span class="params">(SqStack &amp;S, SElemType &amp;e)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(S.top == S.base) <span class="keyword">return</span> ERROR;</span><br><span class="line">	e = *--S.top; <span class="comment">//相当于--S.top; e = *S.top;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="链栈"><a href="#链栈" class="headerlink" title="链栈"></a>链栈</h3><h4 id="链栈的表示"><a href="#链栈的表示" class="headerlink" title="链栈的表示"></a>链栈的表示</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">StackNode</span>&#123;</span></span><br><span class="line">	SElemType data;<span class="comment">//存放元素</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">StackNode</span> *<span class="title">next</span>;</span><span class="comment">//指向下一个</span></span><br><span class="line">&#125; StackNode, *LinkStack;<span class="comment">//一个节点类型 一个指向节点的指针类型</span></span><br><span class="line">LinkStack S;</span><br></pre></td></tr></table></figure>
+<h4 id="链栈的初始化"><a href="#链栈的初始化" class="headerlink" title="链栈的初始化"></a>链栈的初始化</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InitStack</span><span class="params">(LinkStack &amp;S)</span> </span>&#123;</span><br><span class="line">	<span class="comment">//构造一个空栈，栈顶指针置空</span></span><br><span class="line">	S=<span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="判断链栈是否为空"><a href="#判断链栈是否为空" class="headerlink" title="判断链栈是否为空"></a>判断链栈是否为空</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">StackEmpty</span><span class="params">(LinkStack &amp;S)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(S == <span class="literal">NULL</span>) <span class="keyword">return</span> TRUE;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> FALSE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="链栈的入栈"><a href="#链栈的入栈" class="headerlink" title="链栈的入栈"></a>链栈的入栈</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Status <span class="title">Push</span><span class="params">(LinkStack &amp;S, SElemTyoe e)</span> </span>&#123;</span><br><span class="line">	p=<span class="keyword">new</span> StackNode; <span class="comment">//生成新结点p</span></span><br><span class="line">	p-&gt;data=e; <span class="comment">//将新的结点数据域置为e</span></span><br><span class="line">	p-&gt;next=S; <span class="comment">//将新结点插入栈顶</span></span><br><span class="line">	S=p; <span class="comment">//修改栈顶指针</span></span><br><span class="line">	<span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="链栈的出栈"><a href="#链栈的出栈" class="headerlink" title="链栈的出栈"></a>链栈的出栈</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Status <span class="title">Pop</span><span class="params">(LinkStack &amp;S,SElemType &amp;e)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(S == <span class="literal">NULL</span>) <span class="keyword">return</span> ERROR;</span><br><span class="line">	e = S-&gt; data;</span><br><span class="line">	p = S;</span><br><span class="line">	S = S-&gt; next;</span><br><span class="line">	<span class="keyword">delete</span> p;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="取栈顶元素"><a href="#取栈顶元素" class="headerlink" title="取栈顶元素"></a>取栈顶元素</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">SElemType <span class="title">GetTop</span><span class="params">(LinkStack S)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(S != <span class="literal">NULL</span>)</span><br><span class="line">		<span class="keyword">return</span> S-&gt;data;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="栈与递归"><a href="#栈与递归" class="headerlink" title="栈与递归"></a>栈与递归</h3><p>…</p>
+<h2 id="队列的表示和操作的实现"><a href="#队列的表示和操作的实现" class="headerlink" title="队列的表示和操作的实现"></a>队列的表示和操作的实现</h2><p>Q 先进先出的线性表</p>
+<h3 id="线性队列"><a href="#线性队列" class="headerlink" title="线性队列"></a>线性队列</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">线性队列的定义</span><br><span class="line">#define MAXQSIZE 100 &#x2F;&#x2F;最大队列长度</span><br><span class="line">Typedef struct &#123;</span><br><span class="line">	QElemType *base; &#x2F;&#x2F;初始化的动态分配存储空间</span><br><span class="line">	int front; &#x2F;&#x2F;头指针</span><br><span class="line">	int rear; &#x2F;&#x2F;尾指针</span><br><span class="line">&#125;SqQueue;</span><br></pre></td></tr></table></figure>
+<h4 id="引入循环队列"><a href="#引入循环队列" class="headerlink" title="引入循环队列"></a>引入循环队列</h4><p>假溢出 解决上溢的问题 –循环队列</p>
+<h5 id="循环队列初始化"><a href="#循环队列初始化" class="headerlink" title="循环队列初始化"></a>循环队列初始化</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Status InitQueue (SqQueue &amp;Q) &#123;</span><br><span class="line">	Q.base &#x3D; new QElemType[MAXQSIZE] &#x2F;&#x2F;分配数组空间</span><br><span class="line">	&#x2F;&#x2F;Q.base &#x3D; (QElemType*)malloc(MAXQSIZE*sizeof(QElemType));</span><br><span class="line">	if(!Q.base) exit(OVERFLOW);</span><br><span class="line">	Q.front &#x3D; Q.rear &#x3D; 0;</span><br><span class="line">	return OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="求队列的长度"><a href="#求队列的长度" class="headerlink" title="求队列的长度"></a>求队列的长度</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int QueueLength (SqQueue Q) &#123;</span><br><span class="line">	return ((Q.rear - Q.front + MAXQSIZE) % MAXQSIZE);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="循环队列入队"><a href="#循环队列入队" class="headerlink" title="循环队列入队"></a>循环队列入队</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Status EnQueue(SqQueue &amp;Q, QElemType e) &#123;</span><br><span class="line">	if((Q.rear + 1) % MAXQSIEZ &#x3D;&#x3D; Q.front) return ERROR; &#x2F;&#x2F;队满</span><br><span class="line">	Q.base[Q.rear] &#x3D; e; &#x2F;&#x2F;新元素加入队尾</span><br><span class="line">	Q.rear &#x3D; (Q.rear + 1) % MAXQSIZE; &#x2F;&#x2F;队尾指针+1</span><br><span class="line">	return OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="循环队列出队"><a href="#循环队列出队" class="headerlink" title="循环队列出队"></a>循环队列出队</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Status DeQueue(SqQueue &amp;Q, QElemType e) &#123;</span><br><span class="line">	if(Q.front &#x3D;&#x3D; Q.rear) return ERROR; &#x2F;&#x2F;队空</span><br><span class="line">	e &#x3D; Q.base[Q.front]; &#x2F;&#x2F;保存队头元素</span><br><span class="line">	Q.front &#x3D; (Q.front+1) % MAXQSIZE;</span><br><span class="line">	return OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="取队头元素"><a href="#取队头元素" class="headerlink" title="取队头元素"></a>取队头元素</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SElemType GetHead(SqQueue Q) &#123;</span><br><span class="line">	if(Q.front !&#x3D; Q.rear) &#x2F;&#x2F;队列不为空</span><br><span class="line">		return Q.base[Q.front]; &#x2F;&#x2F;返回队头指针元素的值，对头指针不变;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="链队列"><a href="#链队列" class="headerlink" title="链队列"></a>链队列</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXSIZE 100 <span class="comment">//最大队列长度</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Qnode</span> &#123;</span></span><br><span class="line">	QElemType data;</span><br><span class="line">	stuct Qnode *next;</span><br><span class="line">&#125;QNode,*QueuePtr;</span><br><span class="line"><span class="comment">//头指针</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">	</span><br><span class="line">	QueuePtr front; <span class="comment">//队头指针</span></span><br><span class="line">	QueuePtr rear; <span class="comment">//队尾指针·1·</span></span><br><span class="line">&#125;LinkQueue;</span><br></pre></td></tr></table></figure>
+<h4 id="链队列初始化"><a href="#链队列初始化" class="headerlink" title="链队列初始化"></a>链队列初始化</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Status <span class="title">InitQueue</span> <span class="params">(LinkQueue &amp;Q)</span></span>&#123;</span><br><span class="line">	Q.front = Q.rear = (QueuePtr)molloc(<span class="keyword">sizeof</span>(QNode));</span><br><span class="line">	<span class="keyword">if</span>(!Q.front) <span class="built_in">exit</span>(OVERFLOW);</span><br><span class="line">	Q.front-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="销毁链队列"><a href="#销毁链队列" class="headerlink" title="销毁链队列"></a>销毁链队列</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Status <span class="title">DestroyQueue</span> <span class="params">(LinkQueue )</span> </span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(Q.front) &#123;</span><br><span class="line">		p = Q.front-&gt;next; <span class="comment">//Q.rear = Q.front-&gt;next;</span></span><br><span class="line">		<span class="built_in">free</span>(Q.front);     <span class="comment">//free(Q.front);</span></span><br><span class="line">		Q.front = p;       <span class="comment">//Q.front=Q.rear;</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="将元素e入队"><a href="#将元素e入队" class="headerlink" title="将元素e入队"></a>将元素e入队</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Status <span class="title">EnQueue</span><span class="params">(LinkQueue &amp;Q, QElemType e)</span> </span>&#123;</span><br><span class="line">	p = (QueuePtr)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(QNode));</span><br><span class="line">	<span class="keyword">if</span>(!p) <span class="built_in">exit</span>(OVERFLOW);</span><br><span class="line">	p -&gt; data = e;</span><br><span class="line">	p -&gt; next = <span class="literal">NULL</span>;</span><br><span class="line">	Q.rear -&gt; next = p;</span><br><span class="line">	Q.rear = p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="链队列出队"><a href="#链队列出队" class="headerlink" title="链队列出队"></a>链队列出队</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Status <span class="title">DeQueue</span> <span class="params">(LinkQueue &amp;Q,QElemType &amp;e)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(Q.front == Q.rear) <span class="keyword">return</span> ERROR;</span><br><span class="line">	p = Q.front -&gt; next;</span><br><span class="line">	e = p -&gt; data;</span><br><span class="line">	Q.front -&gt; next = p -&gt; next;</span><br><span class="line">	<span class="keyword">if</span>(Q.rear == p) &#123;</span><br><span class="line">		Q.front = Q.rear;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">delete</span> p;</span><br><span class="line">	<span class="keyword">return</span> OK;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="取队列的队头元素"><a href="#取队列的队头元素" class="headerlink" title="取队列的队头元素"></a>取队列的队头元素</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Status <span class="title">GetHead</span> <span class="params">(LinkQueue Q, QElemType &amp;e)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(Q.front == Q.rear) <span class="keyword">return</span> ERROR;</span><br><span class="line">	e = Q.front -&gt; next -&gt; data;</span><br><span class="line">	<span class="keyword">return</span> OK; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title='0' data-url='http://www.0dutv.com/plug/down/up2.php/460876.mp3'></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+		data-enable='false'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+</div>
+
+
+    </div>
+</div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/hijiki.model.json"},"display":{"position":"right","hOffset":-40,"vOffset":-30,"width":200,"height":350},"mobile":{"show":true},"log":false});</script></body>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+</html>
